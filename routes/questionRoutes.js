@@ -1,4 +1,4 @@
-const express = require("express");
+ const express = require("express");
 const router = express.Router();
 const Question = require("../models/Question");
 const { generateQuestion } = require("../openaiService");
@@ -8,7 +8,6 @@ router.post("/generate", async (req, res) => {
     try {
         const { topic } = req.body;
         const questionText = await generateQuestion(topic);
-
         const [question, ...options] = questionText.split("\n").filter(line => line);
         const correctAnswer = options[options.length - 1];  // Assume last line is the answer
 
